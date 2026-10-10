@@ -27,10 +27,39 @@ def update_timer(id,r):
         timers[id]=random.randint(1,100)
         time.sleep(r)
 refresh_rates=[0.5,1,2,3,5,7]
-for i in range(6):
-    thread=threading.Thread(target=update_timer,args=(i,refresh_rates[i]))
-    thread.daemon=True
-    thread.start()
+threads_started = False
+
+@app.before_request
+def initialize_threads():
+
+    start_threads()
+def start_threads():
+
+    global threads_started
+
+    if threads_started:
+        return
+
+    refresh_rates = [
+        0.5,
+        1,
+        2,
+        3,
+        5,
+        7
+    ]
+
+    for i in range(6):
+
+        t = threading.Thread(
+            target=update_timer,
+            args=(i, refresh_rates[i])
+        )
+
+        t.daemon = True
+        t.start()
+
+    threads_started = True
 
 
 if __name__ == "__main__":
