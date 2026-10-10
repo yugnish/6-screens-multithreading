@@ -1,0 +1,28 @@
+body{
+    background:#111;
+    color: white;
+    text-align: center;
+    font-family:Arial;
+}
+h1{
+    font-size: 40px;
+}
+.container{
+    display:grid;
+    grid-template-columns:repeat(3,300px) ;
+    gap:30px;
+    justify-content: center;
+    margin-top: 50px;
+}
+.window{
+    background:#222;
+    padding: 30px;
+    border-radius: 15px;
+}
+.window h2{
+    font-size:25px;
+}
+.window p{
+    font-size:50px;
+    color:#00ff99;
+}
